@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Birthday Celebration with Cakes and Gifts</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Playfair+Display:ital,wght@0,700;1,700;0,900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "festive-pink": "#F43F5E",
+                        "festive-yellow": "#FACC15",
+                        "festive-blue": "#38BDF8",
+                        "deep-midnight": "#0F172A",
+                        "rich-purple": "#1E1B4B",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "elegant": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.75rem",
+                        "lg": "1.5rem",
+                        "xl": "2.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .material-symbols-outlined {
+                font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+            .soft-wide-glow-gold {
+                filter: drop-shadow(0 0 30px rgba(255, 232, 163, 0.4));
+            }
+            .polaroid-frame {
+                @apply bg-white p-1.5 pb-4 shadow-xl transform transition-all duration-500 hover:scale-110 hover:-translate-y-2 cursor-pointer border-2;
+                width: 85px;
+                height: 100px;
+            }
+            .polaroid-inner {
+                @apply w-full h-[62px] overflow-hidden flex items-center justify-center rounded-sm;
+            }
+            .hanging-string-silver {
+                width: 2px;
+                background: linear-gradient(to bottom, #C0C0C0, rgba(192,192,192,0.3));
+                box-shadow: 0 0 6px rgba(192,192,192,0.5);
+            }
+            .bg-vibrant-gradient {
+                background: radial-gradient(circle at top, #1E1B4B 0%, #0F172A 100%);
+            }
+            .text-vibrant-gradient {
+                background: linear-gradient(to right, #F43F5E, #FACC15, #38BDF8);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            .floating-bg-icon {
+                @apply fixed pointer-events-none opacity-10 blur-[1px];
+            }
+            .letter-section {
+                min-height: 100vh;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                padding: 4rem 2rem;
+                opacity: 0;
+                transition: opacity 0.5s ease-in-out;
+            }
+            .letter-section.show {
+                display: flex;
+                animation: fadeIn 0.5s ease-in-out forwards;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            .letter-card {
+                background: rgba(30, 27, 75, 0.8);
+                backdrop-filter: blur(20px);
+                border: 2px solid rgba(250, 204, 21, 0.3);
+                padding: 3rem;
+                border-radius: 2rem;
+                max-width: 600px;
+                width: 100%;
+                box-shadow: 0 20px 60px rgba(250, 204, 21, 0.2);
+                animation: slideUp 0.4s ease-out;
+            }
+            @keyframes slideUp {
+                from { transform: translateY(50px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+            .letter-bow {
+                font-size: 4rem;
+                text-align: center;
+                margin-bottom: 1rem;
+                animation: bounce 1s ease-in-out infinite;
+            }
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+            .celebration-element {
+                position: fixed;
+                font-size: 2rem;
+                pointer-events: none;
+                z-index: 999;
+                animation: float-up 3s ease-out forwards;
+            }
+            @keyframes float-up {
+                0% {
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        }
+    </style>
+</head>
+<body class="font-display bg-deep-midnight text-white min-h-screen overflow-hidden bg-vibrant-gradient">
+
+<!-- Left hanging photos -->
+<div class="fixed top-0 left-0 z-40 pointer-events-none w-[350px] h-[350px]">
+<svg class="w-full h-full soft-wide-glow-gold" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="goldGradL" x1="0%" y1="0%" x2="100%" y2="100%">
+<stop offset="0%" stop-color="#FFF4D6"/>
+<stop offset="50%" stop-color="#FFE8A3"/>
+<stop offset="100%" stop-color="#FFDDA1"/>
+</linearGradient>
+</defs>
+<path d="M 350 0 Q 300 200 0 300" fill="none" stroke="url(#goldGradL)" stroke-linecap="round" stroke-width="8"></path>
+<!-- Small celebration bulbs along the curve -->
+<circle cx="350" cy="0" r="5" fill="#FFE8A3" opacity="0.8"/>
+<circle cx="337" cy="39" r="4" fill="#FFF4D6" opacity="0.6"/>
+<circle cx="320" cy="76" r="5" fill="#FFE8A3" opacity="0.7"/>
+<circle cx="298" cy="111" r="4" fill="#FFF4D6" opacity="0.6"/>
+<circle cx="270" cy="144" r="5" fill="#FFE8A3" opacity="0.7"/>
+<circle cx="238" cy="175" r="4" fill="#FFF4D6" opacity="0.6"/>
+<circle cx="200" cy="204" r="5" fill="#FFE8A3" opacity="0.7"/>
+<circle cx="158" cy="231" r="4" fill="#FFF4D6" opacity="0.6"/>
+<circle cx="110" cy="256" r="5" fill="#FFE8A3" opacity="0.7"/>
+<circle cx="58" cy="279" r="4" fill="#FFF4D6" opacity="0.6"/>
+</svg>
+<div class="absolute left-[246px] top-[50px] flex flex-col items-center pointer-events-auto">
+<div class="hanging-string-silver h-16"></div>
+<div class="polaroid-frame -rotate-6 border-festive-pink">
+<div class="polaroid-inner">
+<img src="photo1.jpg" alt="Photo 1" style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+</div>
+</div>
+<div class="absolute left-[194px] top-[126px] flex flex-col items-center pointer-events-auto">
+<div class="hanging-string-silver h-16"></div>
+<div class="polaroid-frame rotate-3 border-festive-yellow">
+<div class="polaroid-inner">
+<img src="photo2.jpg" alt="Photo 2" style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+</div>
+</div>
+<div class="absolute left-[96px] top-[202px] flex flex-col items-center pointer-events-auto">
+<div class="hanging-string-silver h-16"></div>
+<div class="polaroid-frame -rotate-2 border-festive-blue">
+<div class="polaroid-inner">
+<img src="photo3.jpg" alt="Photo 3" style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+</div>
+</div>
+</div>
+
+<!-- Right hanging photos -->
+<div class="fixed top-0 right-0 z-40 pointer-events-none w-[350px] h-[350px]">
+<svg class="w-full h-full soft-wide-glow-gold" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient id="goldGradR" x1="100%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" stop-color="#FFF4D6"/>
+<stop offset="50%" stop-color="#FFE8A3"/>
+<stop offset="100%" stop-color="#FFDDA1"/>
+</linearGradient>
+</defs>
+<path d="M 50 0 Q 100 200 400 300" fill="none" stroke="url(#goldGradR)" stroke-linecap="round" stroke-width="8"></path>
+<!-- Small celebration bulbs along the curve -->
+<circle cx="50" cy="0" r="5" fill="#FFE8A3" opacity="0.8"/>
+<circle cx="63" cy="39" r="4" fill="#FFF4D6" opacity="0.6"/>
+<circle cx="80" cy="76" r="5" fill="#FFE8A3" opacity="0.7"/>
+<circle cx="102" cy="111" r="4" fill="#FFF4D6" opacity="0.6"/>
+<circle cx="130" cy="144" r="5" fill="#FFE8A3" opacity="0.7"/>
+<circle cx="162" cy="175" r="4" fill="#FFF4D6" opacity="0.6"/>
+<circle cx="200" cy="204" r="5" fill="#FFE8A3" opacity="0.7"/>
+<circle cx="242" cy="231" r="4" fill="#FFF4D6" opacity="0.6"/>
+<circle cx="290" cy="256" r="5" fill="#FFE8A3" opacity="0.7"/>
+<circle cx="342" cy="279" r="4" fill="#FFF4D6" opacity="0.6"/>
+</svg>
+<div class="absolute right-[246px] top-[50px] flex flex-col items-center pointer-events-auto">
+<div class="hanging-string-silver h-16"></div>
+<div class="polaroid-frame rotate-6 border-festive-blue">
+<div class="polaroid-inner">
+<img src="photo4.jpg" alt="Photo 4" style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+</div>
+</div>
+<div class="absolute right-[194px] top-[126px] flex flex-col items-center pointer-events-auto">
+<div class="hanging-string-silver h-16"></div>
+<div class="polaroid-frame -rotate-3 border-festive-pink">
+<div class="polaroid-inner">
+<img src="photo5.jpg" alt="Photo 5" style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+</div>
+</div>
+<div class="absolute right-[95px] top-[202px] flex flex-col items-center pointer-events-auto">
+<div class="hanging-string-silver h-16"></div>
+<div class="polaroid-frame rotate-2 border-festive-yellow">
+<div class="polaroid-inner">
+<img src="photo6.jpg" alt="Photo 6" style="width: 100%; height: 100%; object-fit: cover;">
+</div>
+</div>
+</div>
+</div>
+
+<!-- Background floating icons -->
+<div class="floating-bg-icon bottom-[-5%] left-[10%] -rotate-12">
+<span class="material-symbols-outlined text-[240px] text-festive-pink">cake</span>
+</div>
+<div class="floating-bg-icon top-[40%] left-[-5%] rotate-12">
+<span class="material-symbols-outlined text-[160px] text-festive-yellow">redeem</span>
+</div>
+<div class="floating-bg-icon bottom-[-5%] right-[10%] rotate-12">
+<span class="material-symbols-outlined text-[240px] text-festive-blue">card_giftcard</span>
+</div>
+<div class="floating-bg-icon top-[40%] right-[-5%] -rotate-12">
+<span class="material-symbols-outlined text-[160px] text-festive-pink">bakery_dining</span>
+</div>
+
+<!-- Main content -->
+<div class="relative z-20 flex flex-col min-h-screen">
+
+<main class="flex-1 flex flex-col items-center justify-center p-8 text-center -mt-8">
+<div class="max-w-4xl w-full space-y-10">
+<div class="space-y-6">
+<h1 class="text-4xl md:text-6xl font-elegant font-black text-white tracking-tight leading-none">
+                        Happyyyy Birthdayyyy <span class="block italic text-vibrant-gradient">Papa</span>
+</h1>
+<div class="flex justify-center items-center gap-6">
+<div class="h-1 w-24 bg-festive-pink rounded-full"></div>
+<span class="material-symbols-outlined text-festive-yellow text-4xl">auto_awesome</span>
+<div class="h-1 w-24 bg-festive-blue rounded-full"></div>
+</div>
+</div>
+<div class="relative pt-6">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-r from-festive-pink/20 via-festive-yellow/20 to-festive-blue/20 blur-[120px] rounded-full"></div>
+<div class="relative flex flex-col items-center gap-8">
+<button id="celebrateBtn" class="group relative bg-white text-deep-midnight px-8 py-4 rounded-full text-lg font-black transition-all duration-300 flex items-center gap-3 shadow-[0_20px_50px_rgba(255,255,255,0.2)] hover:scale-105 active:scale-95">
+<span class="absolute inset-0 rounded-full border-[6px] border-festive-yellow opacity-0 group-hover:opacity-100 transition-opacity"></span>
+<span class="material-symbols-outlined text-2xl text-festive-pink group-hover:rotate-12 transition-transform">celebration</span>
+<span class="tracking-tight uppercase">Let's Celebrate 🎉</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+<!-- Letter Section -->
+<section id="letterSection" class="letter-section">
+<div class="letter-card">
+<div class="letter-bow">🎀</div>
+<h2 style="text-align: center; color: #FFDDA1; font-size: 1.8rem; margin-bottom: 2rem; font-family: 'Plus Jakarta Sans', sans-serif; text-shadow: 0 2px 10px rgba(250,204,21,0.3);">! A Little Gift For You !</h2>
+<div style="color: #E0E7FF; font-size: 1.1rem; line-height: 1.8; font-family: 'Plus Jakarta Sans', sans-serif;">
+<h3 style="text-align: center; font-size: 1.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: #FACC15;">
+💝Thankyouuuuu for everything💞
+</h3>
+<p style="text-align: center; margin-bottom: 1rem;">
+you are the BESTTTTTTT<br/>
+<strong style="color: #FACC15;">always stay same as you are💗🧿</strong>
+</p>
+<p style="margin-bottom: 1rem;">
+you are not just my father you are my everything🌷🎀<br/>
+thankyou for all your love,care and support🤍
+</p>
+<p style="margin-bottom: 1rem;">
+you are so precious to me💎💜<br/>
+love youuuuuuuuuuuuuuuuuu❤️🧿
+</p>
+<p style="text-align: center; margin-top: 1.5rem;">
+You are not just Papa<br/>
+<strong style="color: #F43F5E;">You are my Home</strong><br/>
+<strong style="color: #38BDF8;">You are my safe place</strong>
+</p>
+</div>
+</div>
+</section>
+
+<!-- Audio element for background music -->
+<audio id="birthdayMusic" loop>
+<source src="birthday-music.mp3" type="audio/mpeg">
+<!-- Replace 'birthday-music.mp3' with your music file path -->
+</audio>
+
+<script>
+const celebrateBtn = document.getElementById('celebrateBtn');
+const music = document.getElementById('birthdayMusic');
+const letterSection = document.getElementById('letterSection');
+let isPlaying = false;
+
+// Function to create celebration elements
+function createCelebrationElements() {
+    const elements = ['❤️', '🍰', '⭐', '✨', '🎉', '🎊', '💫', '🌟', '🎁', '🎈'];
+    const numberOfElements = 25;
+    
+    for (let i = 0; i < numberOfElements; i++) {
+        setTimeout(() => {
+            const element = document.createElement('div');
+            element.className = 'celebration-element';
+            element.textContent = elements[Math.floor(Math.random() * elements.length)];
+            
+            // Random position across the width
+            element.style.left = Math.random() * 100 + '%';
+            element.style.bottom = '-50px';
+            
+            // Random animation duration between 2-4 seconds
+            element.style.animationDuration = (2 + Math.random() * 2) + 's';
+            
+            // Random delay for staggered effect
+            element.style.animationDelay = (Math.random() * 0.5) + 's';
+            
+            document.body.appendChild(element);
+            
+            // Remove element after animation
+            setTimeout(() => {
+                element.remove();
+            }, 5000);
+        }, i * 80); // Stagger creation
+    }
+}
+
+celebrateBtn.addEventListener('click', function() {
+    if (!isPlaying) {
+        music.play().catch(e => console.log('Audio autoplay blocked:', e));
+        isPlaying = true;
+        
+        // Trigger celebration animation
+        createCelebrationElements();
+        
+        celebrateBtn.innerHTML = `
+            <span class="absolute inset-0 rounded-full border-[6px] border-festive-yellow opacity-0 group-hover:opacity-100 transition-opacity"></span>
+            <span style="font-size: 2rem;">💌</span>
+            <span class="tracking-tight uppercase">A Letter For You</span>
+        `;
+    } else {
+        // Show letter and scroll to it
+        letterSection.classList.add('show');
+        setTimeout(() => {
+            letterSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }
+});
+</script>
+
+</body></html>
